@@ -67,6 +67,12 @@ functions:
       - http:
           path: api/hola-mundo/{name}
           method: get
+  showUser:
+    handler: handler.showUser
+    events:
+      - http:
+          path: api/user
+          method: post
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)

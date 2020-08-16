@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "handler.js",
-  "dependencies": {},
+  "dependencies": {
+    "querystring": "^0.2.0"
+  },
   "devDependencies": {
     "serverless-offline": "^6.5.0"
   },
