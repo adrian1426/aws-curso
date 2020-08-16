@@ -13,8 +13,13 @@
 
 service: sls-password-strength
 
+package:
+  exclude:
+    - node_modules/**
+
 plugins:
   - serverless-offline
+  - serverless-plugin-include-dependencies
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
