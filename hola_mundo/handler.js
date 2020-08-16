@@ -5,8 +5,8 @@ module.exports.hello = async (event, context, callback) => {
     statusCode: 200,
     body: JSON.stringify(
       {
-        message: 'Hola amigo adrian, que cuentas?',
-        input: event.name,
+        message: `Hola amigo ${event.pathParameters.name}`,
+        input: event,
       },
       null,
       2
