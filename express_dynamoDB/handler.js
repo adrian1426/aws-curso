@@ -71,4 +71,40 @@ app.get('/users', (req, res) => {
   });
 });
 
+app.get('/users/:userId', (req, res) => {
+  const datosDB = {
+    TableName: usersTable,
+    Key: {
+      userId: req.params.userId
+    }
+  };
+
+  dynamoDB.get(datosDB, (error, result) => {
+    if (error) {
+      console.log(error);
+      res.status(400).json({
+        codigo: 400,
+        mensaje: 'no se pudo acceder a la tabla'
+      });
+    } else {
+      const { Item } = result;
+
+      if (Item) {
+        res.status(200).json({
+          codigo: 200,
+          mensaje: 'consulta exitosa',
+          datos: Item
+        });
+      } else {
+        res.status(401).json({
+          codigo: 401,
+          mensaje: 'no se encontró ningún usuario con la clave especificada'
+        });
+      }
+
+    }
+  });
+
+});
+
 module.exports.generic = serverless(app);
