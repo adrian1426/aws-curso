@@ -46,4 +46,29 @@ app.post('/users', (req, res) => {
   });
 });
 
+app.get('/users', (req, res) => {
+  const datosDB = {
+    TableName: usersTable
+  };
+
+  dynamoDB.scan(datosDB, (error, result) => {
+    if (error) {
+      console.log(error);
+      res.status(200).json({
+        codigo: 400,
+        mensaje: 'no se pudo sonsultar la tbla'
+      });
+    } else {
+      const { Items } = result;
+
+      res.status(200).json({
+        codigo: 200,
+        mensaje: 'consulta exitosa',
+        datos: Items
+      });
+
+    }
+  });
+});
+
 module.exports.generic = serverless(app);
